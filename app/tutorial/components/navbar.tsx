@@ -14,14 +14,14 @@ import { Input } from '@nextui-org/input';
 
 import { link as linkStyles } from '@nextui-org/theme';
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/app/tutorial/config/site';
 import NextLink from 'next/link';
 import clsx from 'clsx';
 
-import { ThemeSwitch } from '@/components/theme-switch';
-import { TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, SearchIcon } from '@/components/icons';
+import { ThemeSwitch } from '@/app/tutorial/components/theme-switch';
+import { TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, SearchIcon } from '@/app/tutorial/components/icons';
 
-import { Logo } from '@/components/icons';
+import { Logo } from '@/app/tutorial/components/icons';
 
 export const Navbar = () => {
     const searchInput = (

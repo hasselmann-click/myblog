@@ -1,26 +1,16 @@
-import {
-    Navbar as NextUINavbar,
-    NavbarContent,
-    NavbarMenu,
-    NavbarMenuToggle,
-    NavbarBrand,
-    NavbarItem,
-    NavbarMenuItem,
-} from '@nextui-org/navbar';
-import { Link } from '@nextui-org/link';
+import { NavbarContent, NavbarItem, Navbar as NextUINavbar } from '@nextui-org/navbar';
 
 import { ThemeSwitch } from '@/app/components/theme-switch';
+import { Props } from '@nextui-org/navbar/dist/navbar-menu-toggle';
+import { PropsWithChildren } from 'react';
 
-export const Navbar = () => {
+export const Navbar = (props: PropsWithChildren) => {
+    const { children } = props;
     return (
         <NextUINavbar maxWidth="xl" position="sticky">
-            <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
-                <NavbarItem className="hidden sm:flex gap-2">
-                    <ThemeSwitch />
-                </NavbarItem>
-            </NavbarContent>
-
-            <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+            <NavbarContent justify="start"></NavbarContent>
+            <NavbarContent data-justify="center">{children}</NavbarContent>
+            <NavbarContent justify="end">
                 <ThemeSwitch />
             </NavbarContent>
         </NextUINavbar>
