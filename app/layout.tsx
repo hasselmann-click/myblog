@@ -1,5 +1,7 @@
+import "@/styles/globals.css";
 import { Link } from "@nextui-org/link";
 import { Providers } from "./providers";
+import { Navbar } from "@/app/components/navbar";
 
 export default function RootLayout({
 	children,
@@ -11,6 +13,7 @@ export default function RootLayout({
 			<head />
 			<body>
             <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+                <Navbar></Navbar>
                 <main>
                     {children}
                 </main>
