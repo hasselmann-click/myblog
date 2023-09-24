@@ -1,9 +1,10 @@
-import { Link } from '@nextui-org/link';
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
+import NextLink from 'next/link';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 import { HiOutlinePhotograph } from 'react-icons/hi';
+import { Link } from '@nextui-org/link';
 
 type PostDto = {
     id: string;
@@ -55,14 +56,16 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto }>) {
     const { post } = props;
     return (
         <Card className="py-4">
-            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <h4 className="font-bold text-large">{post.title}</h4>
-                <small className="text-default-500">{post.publishedAt?.toLocaleDateString()}</small>
-            </CardHeader>
-            <CardBody className="overflow-visible py-2 justify-center h-full">
-                <HiOutlinePhotograph size={'auto'} />
-                <Image src={''} alt="Card background" className="object-cover rounded-xl" width={270} />
-            </CardBody>
+            <NextLink href={`/${post.slug}`} className="block">
+                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                    <h4 className="font-bold text-large">{post.title}</h4>
+                    <small className="text-default-500">{post.publishedAt?.toLocaleDateString()}</small>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2 justify-center h-full">
+                    <HiOutlinePhotograph size={'auto'} />
+                    <Image src={''} alt="Card background" className="object-cover rounded-xl" width={270} />
+                </CardBody>
+            </NextLink>
         </Card>
     );
 }
