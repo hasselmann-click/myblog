@@ -1,28 +1,19 @@
+import { getPosts } from '@/lib/posts';
+import { PostDto } from '@/types';
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
+import { Link } from '@nextui-org/link';
 import NextLink from 'next/link';
-import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 import { HiOutlinePhotograph } from 'react-icons/hi';
-import { Link } from '@nextui-org/link';
 
-type PostDto = {
-    id: string;
-    title: string;
-    slug: string;
-    publishedAt?: Date;
-};
-export default function Home() {
-    const posts: PostDto[] = [
-        { id: '1', title: 'test1', slug: 'test1', publishedAt: new Date() },
-        { id: '2', title: 'test2', slug: 'test2', publishedAt: new Date() },
-        { id: '3', title: 'test3', slug: 'test3', publishedAt: new Date() },
-    ];
+export default async function Home() {
+    const posts = await getPosts();
     return (
-        <Container>
+        <>
             <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-2 ">
                 {posts.map((post) => (
-                    <PostPreview key={post.id} post={post} />
+                    <PostPreview key={post.title} post={post} />
                 ))}
             </div>
             <div className="mt-10 flex justify-center">
@@ -33,22 +24,7 @@ export default function Home() {
                     <span>View all Posts</span>
                 </Link>
             </div>
-        </Container>
-    );
-}
-
-function Container(props: PropsWithChildren<{ large?: boolean; alt?: boolean; className?: string }>) {
-    return (
-        <div
-            className={clsx(
-                'container px-8 mx-auto xl:px-5',
-                props.large ? ' max-w-screen-xl' : ' max-w-screen-lg',
-                !props.alt && 'py-5 lg:py-8',
-                props.className,
-            )}
-        >
-            {props.children}
-        </div>
+        </>
     );
 }
 
