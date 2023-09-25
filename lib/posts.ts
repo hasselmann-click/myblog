@@ -1,13 +1,26 @@
 import fs from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
-
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkHtml from 'remark-html';
-import remarkPrism from 'remark-prism';
-
 import { PostDto } from '@/types';
+import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+// TODO dynamically import languages to highlight
+// - declare language in frontmatter
+// - register dynamically with hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('javascript', javascript);
+const md = new MarkdownIt({
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(str, { language: lang }).value;
+            } catch (_) {}
+        }
+
+        return ''; // use external default escaping
+    },
+});
 
 const postsDirectory = join(process.cwd(), 'articles');
 
@@ -26,12 +39,9 @@ export const getPost: (slug: string) => Promise<PostDto | null> = async (slug) =
     if (!file) {
         return null;
     }
-    console.log(1);
     const { data, content: mdcontent } = await parseFile(file);
-    console.log(2);
-    const content = await markdownToHtml(mdcontent);
-    console.log(3);
-    return { ...data, slug, content: content } as PostDto;
+    // const content = await markdownToHtml(mdcontent);
+    return { ...data, slug, content: mdcontent } as PostDto;
 };
 
 const parseFile = async (filename: string) => {
@@ -44,11 +54,5 @@ const parseFile = async (filename: string) => {
 };
 
 const markdownToHtml = async (markdown: string): Promise<string> => {
-    // eslint-disable-next-line prettier/prettier
-    const result= await unified()
-        .use(remarkParse)
-        .use(remarkHtml, { sanitize: false })
-        // .use(remarkPrism)
-        .process(markdown);
-    return result.toString();
+    return md.render(markdown);
 };

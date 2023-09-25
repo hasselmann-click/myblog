@@ -1,6 +1,7 @@
 import { getPost, getPosts } from '@/lib/posts';
 import { NextPage } from 'next';
 import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 
 type Params = {
     slug: string;
@@ -25,6 +26,11 @@ const Page = async (props: Props) => {
     if (!post) {
         notFound();
     }
-    return <div dangerouslySetInnerHTML={{ __html: post.content }}></div>;
+    // return <div dangerouslySetInnerHTML={{ __html: post.content }}></div>;
+    return (
+        <article className="prose lg:prose-xl  dark:prose-invert prose-a:text-blue-600 prose-zinc">
+            <ReactMarkdown>{post.content}</ReactMarkdown>
+        </article>
+    );
 };
 export default Page;
