@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import 'highlight.js/styles/github.css';
 
 import { Navbar } from '@/app/components/navbar';
 import { fontSans } from '@/app/config/fonts';

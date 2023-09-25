@@ -1,7 +1,9 @@
 import { getPost, getPosts } from '@/lib/posts';
-import { NextPage } from 'next';
+import Markdown from 'markdown-to-jsx';
 import { notFound } from 'next/navigation';
-import ReactMarkdown from 'react-markdown';
+
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 type Params = {
     slug: string;
@@ -18,6 +20,24 @@ export const generateStaticParams = async (): Promise<Params[]> => {
     return posts.map((post) => ({ slug: post.slug }));
 };
 
+/**
+ * Code highlight component for markdown-to-jsx.
+ * MTJ uses <pre><code/></pre> for code blocks, but <SyntaxHighlighter/> adds a <pre/>
+ * itself. Thus overriding the <pre/> component is necessary, otherwise it's rendered twice.
+ */
+const PreTagCodeHighlighter = ({ children, ...preRest }: any) => {
+    if ('type' in children && children['type'] === 'code') {
+        const { className, children: codeChildren } = children.props;
+        const language = className.replace('lang-', '');
+        return (
+            <SyntaxHighlighter language={language} style={atomDark}>
+                {codeChildren}
+            </SyntaxHighlighter>
+        );
+    }
+    return <pre {...preRest}>{children}</pre>;
+};
+
 const Page = async (props: Props) => {
     const {
         params: { slug },
@@ -26,10 +46,17 @@ const Page = async (props: Props) => {
     if (!post) {
         notFound();
     }
-    // return <div dangerouslySetInnerHTML={{ __html: post.content }}></div>;
     return (
         <article className="prose lg:prose-xl  dark:prose-invert prose-a:text-blue-600 prose-zinc">
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <Markdown
+                options={{
+                    overrides: {
+                        pre: PreTagCodeHighlighter,
+                    },
+                }}
+            >
+                {post.content}
+            </Markdown>
         </article>
     );
 };

@@ -8,6 +8,10 @@ estdRead: 12
 
 I **love** using [Next.js](https://nextjs.org/)
 
-```js
-const doc = getDocBySlug(params.slug);
+```typescript
+async function logMovies() {
+  const response = await fetch("http://example.com/movies.json");
+  const movies = await response.json();
+  console.log(movies);
+}
 ```
