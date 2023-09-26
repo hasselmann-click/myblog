@@ -4,7 +4,7 @@ import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Image } from '@nextui-org/image';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
-import { HiOutlinePhotograph } from 'react-icons/hi';
+import { HiOutlinePhoto } from 'react-icons/hi2';
 
 export default async function Home() {
     const posts = await getPosts();
@@ -45,6 +45,6 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
 
 const PostPreviewImage = (props: { src?: string }) => {
     const { src } = props;
-    if (!src) return <HiOutlinePhotograph size={200} />;
+    if (!src) return <HiOutlinePhoto size={200} />;
     return <Image src={src} alt="thumbnail" className="object-cover rounded-xl max-h-[200px] w-full" />;
 };

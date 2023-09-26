@@ -3,12 +3,11 @@ import 'highlight.js/styles/github.css';
 
 import { Navbar } from '@/app/components/navbar';
 import { fontSans } from '@/app/config/fonts';
+import { Providers } from '@/app/providers';
 import { Link } from '@nextui-org/link';
 import clsx from 'clsx';
 import { Metadata } from 'next';
-import { Providers } from '@/app/providers';
-import { ThemeSwitch } from '@/app/components/theme-switch';
-import { ReactNode } from 'react';
+import { HiOutlineArrowLeft } from 'react-icons/hi2';
 
 export const metadata: Metadata = {
     // TODO optimize: metadata
@@ -45,6 +44,14 @@ const PageFooter = () => {
     );
 };
 
+const BackButton = () => {
+    return (
+        <Link className="font-bold text-5xl" href="/" title="hasselmann.ch">
+            <HiOutlineArrowLeft />
+        </Link>
+    );
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
@@ -55,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         <Navbar start={<PageTitle />} />
                         <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">{children}</main>
                         <footer className="w-full flex items-center justify-center py-3">
-                            <Navbar center={<PageFooter />} />
+                            <Navbar center={<PageFooter />} start={<BackButton />} />
                         </footer>
                     </div>
                 </Providers>
