@@ -27,6 +27,12 @@ const Page = async (props: Props) => {
     if (!post) {
         notFound();
     }
-    return <MarkdownNode markdown={post.content} hlStyle={hlStyle} />;
+    return (
+        <>
+            <div className="flex justify-center">
+                <MarkdownNode markdown={post.content} hlStyle={hlStyle} />
+            </div>
+        </>
+    );
 };
 export default Page;

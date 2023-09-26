@@ -1,24 +1,47 @@
 import Markdown from 'markdown-to-jsx';
 import { CSSProperties } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
+import Head from 'next/head';
 
 export const MarkdownNode = (props: { markdown: string; hlStyle: { [key: string]: CSSProperties } }) => {
     const { markdown, hlStyle } = props;
     return (
-        <article className="prose lg:prose-xl  dark:prose-invert prose-a:text-blue-600 prose-zinc">
-            <Markdown
-                options={{
-                    overrides: {
-                        pre: {
-                            component: PreTagCodeHighlighter,
-                            props: { hlStyle },
-                        },
-                    },
-                }}
+        <>
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+            </Head>
+            <article
+                className={`
+            prose 
+            max-w-prose
+            dark:prose-invert
+            prose-a:text-blue-600 
+            prose-zinc 
+
+            sm:prose-sm
+            sm:text-sm
+            sm:min-w-0
+
+            md:max-w-prose
+            md:text-lg
+            
+            lg:prose-xl`}
+                style={{ maxWidth: '100%' }}
             >
-                {markdown}
-            </Markdown>
-        </article>
+                <Markdown
+                    options={{
+                        overrides: {
+                            pre: {
+                                component: PreTagCodeHighlighter,
+                                props: { hlStyle },
+                            },
+                        },
+                    }}
+                >
+                    {markdown}
+                </Markdown>
+            </article>
+        </>
     );
 };
 
