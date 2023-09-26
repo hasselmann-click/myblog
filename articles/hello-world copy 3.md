@@ -1,8 +1,8 @@
 ---
 title: Hello World
-publishedAt: '2023.09.24'
+publishedAt: '2023.08.10'
 estdRead: 12
-imgSrc: ./landscape-1695713501229-1936.jpg
+imgSrc: ./ytknick-Computer.svg
 ---
 
 # My First Post

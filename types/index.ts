@@ -7,6 +7,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export type PostDto = {
     title: string;
     slug: string;
-    publishedAt?: Date;
+    publishedAt: Date;
     content: string;
+    imgSrc?: string;
 };
