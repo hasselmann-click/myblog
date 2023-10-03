@@ -44,6 +44,7 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
 
 const PostPreviewImage = (props: { src?: string }) => {
     const { src } = props;
+    if (!src) return null;
     return (
         <Image src={src} alt="thumbnail" fallbackSrc={'./images/image_icon.svg'} className="object-cover rounded-xl max-h-[200px] w-full" />
     );
