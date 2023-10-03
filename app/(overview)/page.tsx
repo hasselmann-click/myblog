@@ -1,6 +1,3 @@
-import { PageFooter } from '@/app/components/layout/PageFooter';
-import { PageTitle } from '@/app/components/layout/PageTitle';
-import { Navbar } from '@/app/components/navbar';
 import { getPosts } from '@/lib/posts';
 import { PostDto } from '@/types';
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
@@ -8,22 +5,13 @@ import { Image } from '@nextui-org/image';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
 import { HiOutlinePhoto } from 'react-icons/hi2';
-
-const HomeLayout = ({ children }: PropsWithChildren) => (
-    <>
-        <Navbar start={<PageTitle />} />
-        <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">{children}</main>
-        <footer className="w-full flex items-center justify-center py-3">
-            <Navbar center={<PageFooter />} />
-        </footer>
-    </>
-);
+import { HomeLayout } from '../components/layout/HomeLayout';
 
 export default async function Home() {
     const posts = await getPosts();
     const postsOrdered = posts.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
     return (
-        <HomeLayout>
+        <>
             <div className="flex justify-center">
                 {postsOrdered.slice(0, 1).map((post) => (
                     <PostPreview key={post.title} post={post} isFirst={true} />
@@ -34,7 +22,7 @@ export default async function Home() {
                     <PostPreview key={post.title} post={post} />
                 ))}
             </div>
-        </HomeLayout>
+        </>
     );
 }
 
