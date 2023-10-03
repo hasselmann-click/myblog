@@ -35,7 +35,6 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
                     <small className="text-default-500">{post.publishedAt.toString()}</small>
                 </CardHeader>
                 <CardBody className="items-center h-full">
-                    {/* <PostPreviewImage src={undefined} /> */}
                     <PostPreviewImage src={post.imgSrc} />
                 </CardBody>
             </NextLink>
@@ -45,6 +44,7 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
 
 const PostPreviewImage = (props: { src?: string }) => {
     const { src } = props;
-    if (!src) return <HiOutlinePhoto size={200} />;
-    return <Image src={src} alt="thumbnail" className="object-cover rounded-xl max-h-[200px] w-full" />;
+    return (
+        <Image src={src} alt="thumbnail" fallbackSrc={'./images/image_icon.svg'} className="object-cover rounded-xl max-h-[200px] w-full" />
+    );
 };
