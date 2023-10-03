@@ -1,6 +1,5 @@
-import { PageFooter } from '@/app/components/layout/PageFooter';
-import { PageTitle } from '@/app/components/layout/PageTitle';
-import { Navbar } from '@/app/components/navbar';
+import { PageTitle } from '@/components/layout/PageTitle';
+import { Navbar } from '@/components/navbar';
 import { PropsWithChildren, ReactNode } from 'react';
 
 export const HomeLayout = ({ children, footerChildren }: PropsWithChildren<{ footerChildren: ReactNode }>) => (

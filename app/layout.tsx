@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import 'highlight.js/styles/github.css';
 
-import { fontSans } from '@/app/config/fonts';
+import { fontSans } from '@/config/fonts';
 import { Providers } from '@/app/providers';
 import clsx from 'clsx';
 import { Metadata } from 'next';

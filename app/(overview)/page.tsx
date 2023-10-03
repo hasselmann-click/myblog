@@ -5,7 +5,6 @@ import { Image } from '@nextui-org/image';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
 import { HiOutlinePhoto } from 'react-icons/hi2';
-import { HomeLayout } from '../components/layout/HomeLayout';
 
 export default async function Home() {
     const posts = await getPosts();
