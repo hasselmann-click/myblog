@@ -3,7 +3,8 @@ import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { join } from 'path';
 
-const postsDirectory = join(process.cwd(), 'articles');
+const articleDir = process.env.ARTICLE_DIRECTORY || 'articles';
+const postsDirectory = join(process.cwd(), articleDir);
 
 export const getPosts: () => Promise<PostDto[]> = async () => {
     const fileNames = await fs.readdir(postsDirectory);
