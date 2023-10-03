@@ -26,7 +26,7 @@ export const MarkdownNode = (props: { markdown: string; hlStyle: { [key: string]
             md:text-lg
             
             lg:prose-xl`}
-                style={{ maxWidth: '100%' }}
+                style={{ maxWidth: '90%' }}
             >
                 <Markdown
                     options={{
@@ -53,7 +53,7 @@ export const MarkdownNode = (props: { markdown: string; hlStyle: { [key: string]
 const PreTagCodeHighlighter = ({ children, hlStyle, ...preRest }: any) => {
     if ('type' in children && children['type'] === 'code') {
         const { className, children: codeChildren } = children.props;
-        const language = className.replace('lang-', '');
+        const language = className?.replace('lang-', '');
         return (
             <SyntaxHighlighter language={language} style={hlStyle}>
                 {codeChildren}
