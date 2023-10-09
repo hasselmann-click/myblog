@@ -1,13 +1,10 @@
 import '@/styles/globals.css';
 import 'highlight.js/styles/github.css';
 
-import { Navbar } from '@/app/components/navbar';
-import { fontSans } from '@/app/config/fonts';
+import { fontSans } from '@/config/fonts';
 import { Providers } from '@/app/providers';
-import { Link } from '@nextui-org/link';
 import clsx from 'clsx';
 import { Metadata } from 'next';
-import { HiOutlineArrowLeft } from 'react-icons/hi2';
 
 export const metadata: Metadata = {
     // TODO optimize: metadata
@@ -27,44 +24,13 @@ export const metadata: Metadata = {
     },
 };
 
-const PageTitle: () => JSX.Element = () => {
-    return (
-        <Link className="font-bold text-5xl" href="/" title="hasselmann.ch">
-            <h1 className="text-default-500">hasselmann</h1>
-        </Link>
-    );
-};
-
-const PageFooter = () => {
-    return (
-        <Link className="gap-1 text-current" href="/tutorial" title="NextUI Tutorialpage">
-            <span className="text-default-500">Powered by</span>
-            <p className="text-primary">NextUI</p>
-        </Link>
-    );
-};
-
-const BackButton = () => {
-    return (
-        <Link className="font-bold text-5xl" href="/" title="hasselmann.ch">
-            <HiOutlineArrowLeft />
-        </Link>
-    );
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <head />
             <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
                 <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-                    <div className="relative flex flex-col h-screen">
-                        <Navbar start={<PageTitle />} />
-                        <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">{children}</main>
-                        <footer className="w-full flex items-center justify-center py-3">
-                            <Navbar center={<PageFooter />} start={<BackButton />} />
-                        </footer>
-                    </div>
+                    <div className="relative flex flex-col h-screen">{children}</div>
                 </Providers>
             </body>
         </html>

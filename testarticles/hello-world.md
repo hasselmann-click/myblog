@@ -11,6 +11,8 @@ imgSrc: ./landscape-1695713501229-1936.jpg
 
 I **love** using [Next.js](https://nextjs.org/)
 
+ This is a **bold** text and this is a `code` block.
+
 ```typescript
 async function logMovies() {
   const response = await fetch("http://example.com/movies.json");
