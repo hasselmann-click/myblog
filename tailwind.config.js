@@ -24,8 +24,8 @@ module.exports = {
                             // 	Tailwind CSS typography plugin uses backticks around inline code. We don't want that.
                             // https://futurestud.io/tutorials/tailwind-css-remove-backticks-around-inline-code>
                             code: {
-                                color: theme('colors.slate.800'),
-                                backgroundColor: theme('colors.stone.100'),
+                                color: theme('colors.slate.300'),
+                                backgroundColor: theme('colors.gray.900'),
                                 borderRadius: theme('borderRadius.DEFAULT'),
                                 paddingLeft: theme('spacing[1.5]'),
                                 paddingRight: theme('spacing[1.5]'),
@@ -34,7 +34,7 @@ module.exports = {
                             },
                             // Used for accordions
                             details: {
-                                color: theme('colors.slate.800'),
+                                color: theme('colors.slate.500'),
                                 backgroundColor: theme('colors.stone.100'),
                                 borderRadius: theme('borderRadius.DEFAULT'),
                                 paddingLeft: theme('spacing[1.5]'),
