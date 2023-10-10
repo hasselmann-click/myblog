@@ -17,7 +17,7 @@ Dev containers have their own open specification [containers.dev](https://contai
 
 Just what I needed, so let's get started.
 
-## Installations
+## Installation
 
 Full of vigor I started installing. First [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/):
 
@@ -26,7 +26,7 @@ winget show docker
 winget install "docker desktop"
 ```
 
-Docker on Windows can either run with a Hyper-V or a Windows Subsystem for Linux (WSL) 2 backend. I didn't dive very deep into the differences, but my understanding is that Hyper-V is the more complex, but also more versatile solution. While in a personal environment, WSL2 will suffice and even provide a more seamless integration with Windows regarding accessibility and performance.
+Docker on Windows can either run with a Hyper-V or a Windows Subsystem for Linux (WSL) 2 backend. I didn't dive too deep into the differences, but my understanding is that Hyper-V is the more complex, but also more versatile solution. While in a personal environment, WSL2 will suffice and even provide a more seamless integration with Windows regarding accessibility and performance.
 
 For WSL2 I also needed to [install a Linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#change-the-default-linux-distribution-installed)
 
@@ -54,8 +54,7 @@ This creates a `.devcontainer` folder with a minimal `devcontainer.json` inside 
 
 <details>
   <summary>Tipp</summary>
-  <p>
-In case you don't want to declare your extensions in the project, e.g. because of collaborations, there is an extension setting for local default extensions:
+In case you don't want to declare your extensions in the project, e.g. because of collaborations, there is a VS Code extension setting for local default extensions:
 
 ```json
 "dev.containers.defaultExtensions": [
@@ -64,13 +63,12 @@ In case you don't want to declare your extensions in the project, e.g. because o
 ```
 
 These will be installed in all your containers.
-  </p>
 </details>
 
 And of course, this can get [as complex as you want it to](https://containers.dev/implementors/json_reference/  "Dev Container metadata reference") but for now, the simple start configuration will suffice. Subsequently, I used "Dev Containers: Reopen in Container", et voila, my folder was opened in a containerized environment with the VS Code UI.
 That should be it and I'm ready to go! 
 
-## Up And Running
+## Up Next
 
 You know, sometimes life can be unpredictable and full of unexpected obstacles. However, these are the moments we grow as a person and it's important to stay focused and... no, yeah, I hit some speedbumps.
 
@@ -106,9 +104,10 @@ Either try using a new directory name, or remove the files listed above.
 I thought of Next.js being a bit too cautious here, and since I'm pretty stubborn, I decided to create the project in a temporary directory and then move it out from there. Which worked! Now, when I run `npm run dev`, my browser opens up and I'm greeted with the Next.js welcome page.
 
 #### Cold Reload
-This page also cordially invites me to play around with the `pages/index.js`, which I promptly wanted to try out. And nothing happend. Not even on a browser refresh. I had to restart the development server to see the changes I made. 
-This could not be the intended way and indeed, it isn't. Usually Next.js supports Hot Module Reload (HMR), which allows the dev server to detect changes and reflect them immediately. But there appears to be an issue when mounting files in a Linux container from a Windows file system[^3].
-The solution is to move your source files to the Linux file system[^6]. This could be done via the command line or what I did was open my Ubuntu bash, navigated to the folder where I wanted my repository to live and ran `explorer.exe .` (mind the dot). Now I could simply pull over the repo.
+This page also cordially invites me to play around with the `pages/index.js`, which I promptly wanted to try out. 
+
+And nothing happend. Not even on a browser refresh. I had to restart the development server to see the changes I made. This could not be the intended way and indeed, it isn't. Usually Next.js supports Hot Module Reload (HMR), which allows the dev server to detect changes and reflect them immediately. But there appears to be an issue when mounting files in a Linux container from a Windows file system[^3].
+The solution is to move your source files to the Linux file system[^6]. This I could have done via the command line or, what I did, I opened my Ubuntu bash, navigated to the folder where I wanted my repository to live and ran `explorer.exe .` (mind the dot). Now I could simply pull over the repo.
 
 #### Shady Owner
 If you have set up git already, you may come across the following error message:
@@ -148,13 +147,17 @@ fatal: unable to auto-detect email address (got 'node@8722d07ef2fd.(none)')
 
 Normally the dev container adopts the git config from its host, and it does so here too, but in this case this means the Linux distro rather than Windows[^5].
 
- ## Conclusion
+### Conclusion
+Finally I was able to start working on the Next.js tutorial. In the future, when working with dev containers, I will keep the following two points mind:
+- Use the Linux file system for your source files
+- Use lower case names for your projects when working with npm
+
 Running containers on Windows for development is made easy thanks to the open container specification and the Windows subsystem for Linux. Now my development environments live inside the repositories for which they are actually used, which keeps my devices neat and clean and invites to experiment more with other tech stacks.
-All another device really needs to start working on it is VS Code and a container runtime.
+And now all another device really needs to start working on it is VS Code and a container runtime.
 
 Thank you for reading and happy coding!
 
-## Sources
+## Remarks & Sources
 
 [^1]: [Dev Containers: Getting Started - Code With Engineering Playbook (microsoft.github.io)](https://microsoft.github.io/code-with-engineering-playbook/developer-experience/devcontainers/#:~:text=Experience%20with%20Docker-,What%20are%20dev%20containers,-%3F)
 [^2]: I put "locally" in quotes, because if you are using local containerization, technically it is still installed on your machine although logically separated
