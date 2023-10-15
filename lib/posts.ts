@@ -10,7 +10,8 @@ export const getPosts: () => Promise<PostDto[]> = async () => {
     const fileNames = await fs.readdir(postsDirectory);
     const posts = fileNames.map(async (fileName) => {
         const { data, slug, content } = await parseFile(fileName);
-        return { ...data, slug, content } as PostDto;
+        const publishedAt = new Date(data.publishedAt);
+        return { ...data, slug, content, publishedAt } as PostDto;
     });
     return await Promise.all(posts);
 };
@@ -22,7 +23,8 @@ export const getPost: (slug: string) => Promise<PostDto | null> = async (slug) =
         return null;
     }
     const { data, content: mdcontent } = await parseFile(file);
-    return { ...data, slug, content: mdcontent } as PostDto;
+    const publishedAt = new Date(data.publishedAt);
+    return { ...data, slug, content: mdcontent, publishedAt } as PostDto;
 };
 
 const parseFile = async (filename: string) => {

@@ -18,6 +18,21 @@ export const MoonFilledIcon = ({ size = 24, width, height, ...props }: IconSvgPr
     </svg>
 );
 
+export const RssFilledIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
+    <svg
+        aria-hidden="true"
+        focusable="false"
+        height={size || height}
+        role="presentation"
+        viewBox="2 6 15 15"
+        width={size || width}
+        preserveAspectRatio="xMidYMid meet"
+        {...props}
+    >
+        <path d="M4 11a9 9 0 019 9h-2a7 7 0 00-7-7v-2zm0 4a5 5 0 015 5H4v-5zm2 4a1 1 0 100-2 1 1 0 000 2z" fill="currentColor" />
+    </svg>
+);
+
 export const SunFilledIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
     <svg
         aria-hidden="true"
