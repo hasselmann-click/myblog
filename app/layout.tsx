@@ -27,7 +27,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <head />
+            <head>
+                <link rel="alternate" type="application/rss+xml" href="/rss" title="RSS feed for hasselmann.click" />
+            </head>
             <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
                 <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
                     <div className="relative flex flex-col h-screen">{children}</div>

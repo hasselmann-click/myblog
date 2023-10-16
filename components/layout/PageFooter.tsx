@@ -1,10 +1,12 @@
+import { RssFilledIcon } from '@/components/icons';
 import { Link } from '@nextui-org/link';
-import { RssFilledIcon } from '../icons';
+
+const PATH = '/rss';
 
 export const PageFooter = () => {
     return (
         <>
-            <Link href="/api/rss">
+            <Link href={PATH}>
                 <RssFilledIcon />
                 <small style={{ paddingTop: '6px' }}>RSS</small>
             </Link>
