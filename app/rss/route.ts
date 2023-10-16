@@ -1,18 +1,19 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { getPosts } from '@/lib/posts';
-import RSS from 'rss';
 import { NextResponse } from 'next/server';
+import RSS from 'rss';
 
+// TODO use global path constants
 const url = 'https://hasselmann.click';
+const path = '/rss';
 
-export const GET = async (req: NextApiRequest, res: NextApiResponse) => {
+export const GET = async () => {
     const posts = await getPosts();
     const postsSortedByPublishedAt = posts.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
     // I know that there is at least one post
     const feed = new RSS({
         title: 'hasselmann.click',
         description: 'A blog about my personal tech projects',
-        feed_url: `${url}/api/rss`,
+        feed_url: `${url}/${path}`,
         site_url: url,
         // image_url: 'Your Blog Logo URL',
         copyright: 'Copyright © hasselmann.click 2023',

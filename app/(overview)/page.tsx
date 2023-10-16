@@ -33,7 +33,7 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
             <NextLink href={`/${post.slug}`} className="block">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                     <h4 className="font-bold text-large">{post.title}</h4>
-                    <small className="text-default-500">{post.publishedAt.toString()}</small>
+                    <small className="text-default-500">{post.publishedAt.toLocaleDateString()}</small>
                 </CardHeader>
                 <CardBody className="items-center h-full">
                     <PostPreviewImage src={post.imgSrc} />
