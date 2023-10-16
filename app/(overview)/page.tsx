@@ -25,6 +25,12 @@ export default async function Home() {
     );
 }
 
+const newDateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+};
+
 function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean }>) {
     const { post, isFirst } = props;
     const cardClass = isFirst ? 'p-4 max-h-[400px] max-w-[600px] w-full' : 'p-4 max-h-[400px] max-w-[400px] w-full';
@@ -33,7 +39,7 @@ function PostPreview(props: PropsWithChildren<{ post: PostDto; isFirst?: boolean
             <NextLink href={`/${post.slug}`} className="block">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                     <h4 className="font-bold text-large">{post.title}</h4>
-                    <small className="text-default-500">{post.publishedAt.toLocaleDateString()}</small>
+                    <small className="text-default-500">{post.publishedAt.toLocaleString('fr-CA', newDateOptions)}</small>
                 </CardHeader>
                 <CardBody className="items-center h-full">
                     <PostPreviewImage src={post.imgSrc} />
