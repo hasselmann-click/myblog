@@ -28,6 +28,7 @@ wsl --install -d <Distribution Name>
 ```
 The default distro will be Ubuntu if you omit the `-d` parameter. But if you decide to go another route, you have to make sure that you can access the docker service from that distro by going into the settings in Docker Desktop under `Resources > WSL Integration` and enabling your distro of choice.
 **TODO: IMAGE FOR DOCKER SETTINGS**
+![WSL Resource Settings](example.com)
 
 Then it was time for [VS Code](https://code.visualstudio.com/download):
 ```bash
