@@ -1,4 +1,4 @@
-import { MarkdownNode } from '@/app/components/markdownNode';
+import { MarkdownNode } from '@/components/markdownNode';
 
 import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism';
 

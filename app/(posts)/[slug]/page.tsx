@@ -1,4 +1,4 @@
-import { MarkdownNode } from '@/app/components/markdownNode';
+import { MarkdownNode } from '@/components/markdownNode';
 import { getPost, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 
