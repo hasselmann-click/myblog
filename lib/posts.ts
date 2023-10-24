@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { join } from 'path';
 
+// TODO scan articles always and additionally testarticles in dev
 const articleDir = process.env.ARTICLE_DIRECTORY || 'articles';
 const postsDirectory = join(process.cwd(), articleDir);
 

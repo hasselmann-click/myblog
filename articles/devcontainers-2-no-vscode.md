@@ -15,8 +15,8 @@ Since a dev container is just a container like any other, we can use the contain
 docker run mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
 ```
 
-This would download the image, start the container, and happily exit it. What? 
-Well the container needs something to run, but the image alone doesn't have an entry point, only some preinstalled dev tools. Opening a shell will do. 
+This would download the image, start the container, and happily exit it. What?<br/>
+Well, the container needs something to run, but the image alone doesn't have an entry point, only some preinstalled dev tools. Opening a shell will do. 
 But since we also want to actually develop with these tools, we need to add the source files to the container by mounting them as a volume. In my case it was a web app, so I also needed to add some port forwarding for the development server[^1].
 That means we can run it as follows:
 
@@ -36,7 +36,7 @@ docker run -it --entrypoint /bin/bash -p 3000:3000 -v \\wsl.localhost\my\repo:/w
 Of course this could all be defined in a dockerfile as well or using an orchestration tool like Docker Compose. But this is only the raw container part. It doesn't incorporate a potential devcontainer.json configuration, so let's change that.
 
 ## Spinning It Up 2: Devcontainer CLI
-Admittedly not in version > 1.0 -- I'm using 0.52.0 -- we can still use the [devcontainer CLI](https://code.visualstudio.com/docs/devcontainers/devcontainer-cli) to spin up our dev containers. The caveat is that we need to have i.a. Node installed, which kind of objects with my idea of having a clean-as-possible host machine. For this I'm sure we could figure something out with docker multi-stage builds or similar, but I leave that for another post.
+Admittedly not in version > 1.0 -- I'm using 0.52.0 -- we can still use the [devcontainer CLI](https://code.visualstudio.com/docs/devcontainers/devcontainer-cli) to spin up our dev containers. The caveat is that we need to have i.a. Node installed, which kind of objects with my idea of having a clean-as-possible host machine. For this I'm sure we could figure something out with multi-stage docker builds or similar, but I leave that for another post.
 Assuming your project contains a devcontainer.json file -- if not, go read [my previous post](../devcontainers-nextjs-windows11) to find out more -- , we can use the following to spin up the devcontainer:
 
 ```bash
