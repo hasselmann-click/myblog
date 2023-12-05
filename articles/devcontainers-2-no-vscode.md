@@ -5,7 +5,7 @@ estdRead: 5
 ---
 
 # Dev Containers Without VS Code
-In my last post I kind of raved about dev containers and I'm still a big fan. But I also looked at it with their tight integration in VS Code through its [DevContainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). But recently I wanted to try [Cursor](https://www.trycursor.com/), an "AI first" code editor. 
+In [my previous post](../devcontainers-nextjs-windows11) I kind of raved about dev containers and I'm still a big fan. But I also looked at it with their tight integration in VS Code through its [DevContainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). But recently I wanted to try [Cursor](https://www.trycursor.com/), an "AI first" code editor. 
 Since this is a fork of VS code the DevContainer Extension might work eventually, but currently there appear to be some [versioning issues.](https://github.com/getcursor/cursor/issues/718) So, let's take a look at how we could use dev containers without the extension.
 
 ## Spinning It Up: Docker CLI
