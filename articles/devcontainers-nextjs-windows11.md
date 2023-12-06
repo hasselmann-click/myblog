@@ -1,7 +1,7 @@
 ---
 title: "Dev Containers on Windows 11 with NextJS"
 publishedAt: '2023.10.03'
-estdRead: 20
+estdRead: 15
 ---
 
 # Dev Containers on Windows 11 with NextJS
