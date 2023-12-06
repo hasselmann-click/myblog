@@ -47,7 +47,7 @@ The starter kit contains everything you need to get started. The board itself, o
 
 I plugged in the supplied SD card and was able to connect the board to a display using the HDMI-to-MiniHDMI cable that was also included. Et voilà, I was greeted by the iconic raspberry.
 
-So my PI came pre-flashed, with Raspberry Pi OS already installed. Otherwise there is a flashing tool, which looks quite sophisticated[^3]. But in the end it's a mini computer, so you could install de OS flavor of your choice on it, as long as it meets the hardware requirements.
+So my PI came pre-flashed, with Raspberry Pi OS already installed. Otherwise there is a flashing tool, which looks quite sophisticated[^3]. But in the end it's a mini computer, so you could install the OS flavor of your choice on it, as long as it meets the hardware requirements.
 
 ### Remote Baking
 
@@ -106,18 +106,19 @@ curl -sfL https://get.k3s.io | sh -s - server --write-kubeconfig-mode=644
   - write-kubeconfig-mode=644: Set the file permission for the generated kubeconfig file to read-write for the owner and read-only for others
 </details>
 
-For the record, this will also deploy an uninstall script. If you, for whatever reason, want to reset your cluster installation, you will find it at: `/usr/local/bin/k3s-uninstall.sh`[^7]
-
-For the record the second; the kubeconfig permissions are an acceptable compromise between security and usability in this scenario. The default mode for K3s is to run as root user, which also will be the owner of the file. Which means even limiting the permissions further, e.g. to 600, requires everything to be root, which interacts with Kubernetes API. That includes e.g. the kubectl.
+For the record, the kubeconfig permissions are an acceptable compromise between security and usability in this scenario. The default mode for K3s is to run as root user, which also will be the owner of the file. Which means even limiting the permissions further, e.g. to 600, requires everything to be root, which interacts with the Kubernetes API. That includes e.g. the kubectl.
 
 There is a mode to run K3s rootless to mitigate the risks regarding container-breakout attacks, but it's [experimental](https://docs.k3s.io/advanced#running-rootless-servers-experimental).
 Ultimately it's always a trade-off between security and usability and since my cluster is supposed to run in my trusted network only and not providing any services to the public, I can live with that.
 
 But I'll definitely keep an eye on that rootless mode.
 
+For the record the second, the installation will also deploy an uninstall script. If you, for whatever reason, want to reset your cluster installation, you will find it at: `/usr/local/bin/k3s-uninstall.sh`[^7]
+
 ### Missing Salt
 
-I experimented a little with the installation parameters. K3s comes with some sensible default components to make it as quick and easy to setup and deploy a fully fledged Kubernetes cluster. But I thought in my single node setup, maybe I don't need the networking component.
+I experimented a little with the installation parameters. K3s comes with some sensible default components to make it as quick and easy to setup and deploy a fully fledged Kubernetes cluster. But I thought in my single node setup, maybe I don't need the networking component. So I tried to run the install script with the `--flannel-backend=none` option.
+
 In my understanding, Flannel is a plugin which provides a networking layer, which makes it possible for containers on multiple nodes to talk to each other by implementing the CNI (Container Networking Interface) and using a backend like VXLAN. 
 Here is a deeper dive into the Flannel topic: [K8s Under the Hood](https://mvallim.github.io/kubernetes-under-the-hood/documentation/kube-flannel.html)
 
@@ -210,7 +211,7 @@ spec:
 
 This let's me access my nginx server at http://raspberrypi/hello and... wait, I'll see a page from nginx but it's a 404!
 
-I set the path type to "prefix", so everything at "/hello/*" will be routed to this service. But I didn't expect the prefix to also be passed down. Since I don't have anything deployed on path "/hello" it returns a 404. If I update the ingress path to root and navigate to "/", I'll see the expected welcome page.
+I set the ingress' path type to "prefix", so everything at "/hello/*" will be routed to this service. But I didn't expect the prefix to also be passed down. Since I don't have anything deployed on path "/hello" it returns a 404. If I update the ingress path to root and navigate to "/", I'll see the expected welcome page.
 
 Details like this grind my gears, so let's fix that. 
 
@@ -263,9 +264,11 @@ Et voilà http://raspberrypi/hello shows the nginx welcome page.
 Setting up a local Kubernetes cluster was a quite streamlined experience and, as long as you stick to the defaults, I could describe it as almost hassle free. But even if you have specific requirements you will have enough sources and documentation available. And lots of sophisticated open source options to choose from.
 
 Using kubectl to see what's going on in your cluster, deploying and exposing a sample app, and working with ingress resources to map the services to routes in my local network convinced me that I can have a clean setup with multiple self hosted services with little effort.
+
 And hopefully at some point I will remember to provide the namespaces right from the start.
 
 ### Next Time
+
 A raspberry pi running an empty nginx server can certainly be improved in terms of usefulness and applying every resource individually by hand also seems kind of last decade. The next steps in the grand scheme of my TV backlighting setup would be using [Helm](https://helm.sh/docs/topics/charts/) to install different beneficial applications such as the [kubernetes/dashboard](https://github.com/kubernetes/dashboard) or a [Pi-hole](https://pi-hole.net/) before  an LED controlling software to 
 
 Thank you for reading and happy code.. öhm configuring!
