@@ -126,7 +126,7 @@ But a CNI plugin is also needed for pods to communicate on the same host as well
 
 ## The Filling
 
-For my first "Hello World" application I want a simple web server to test out the connectivity in my local network. This means creating a `Deployment` manually by writing the config in a file and applying it via `kubectl -f hello-world.yml`[^8].
+For my first "Hello World" application I want a simple web server to test out the connectivity in my local network. This means creating a `Deployment` manually by writing the config in a file and applying it via `kubectl apply -f hello-world.yml`[^8].
 
 <details>
 <summary>hello-world.yml</summary>
@@ -255,6 +255,8 @@ spec:
     services:
     - name: hello-world
       port: 80
+    middlewares:
+    - name: strip-prefix-middleware
 ```
 </details>
 
