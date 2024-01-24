@@ -1,3 +1,8 @@
+---
+title: "Road to Light II: Kubernetes App Management with Helm"
+publishedAt: '2024.01.24'
+estdRead: 5
+---
 
 # Road to Light II: Kubernetes App Management with Helm
 
@@ -6,7 +11,7 @@ By the end of this post, I will have installed the Kubernetes Dashboard via Helm
 
 ## What is Helm
 
-[Helm](https://helm.sh/) is a package manager for Kubernetes and handles these configuration files for users by providing parameterized templates to install. A collection of templates is called a "Helm Chart". These charts are testable, versionable, and shareable via artifactories. Their basic structure looks like this:
+[Helm](https://helm.sh/) is a package manager for Kubernetes and handles the configuration files for users by providing parameterized templates to install. A collection of templates is called a "Helm Chart". These charts are testable, versionable, and shareable via artifactories. Their basic structure looks like this:
 
 ```bash
 mychart/
@@ -72,7 +77,7 @@ I want to convert my manual installation to a Helm-managed one. Having the [Helm
 
 ```yml
 hello-world.yml:
-	replicas: {{ Values.replicaCount }}
+	replicas: {{ .Values.replicaCount }}
 values.yml:
 	replicaCount: 1
 ```
@@ -90,14 +95,14 @@ hello-world     default         1               2024-01-16 17:14:08.730967906 +0
 
 ### Concerned Helm
 
-With every command, Helm warns me that my Kubernetes configuration files are either group- or even world-readable, which they consider insecure. In general, it is good practice to take warnings seriously and evaluate whether or not they apply to your current situation. So what do these warnings mean in my case?
-Basically, everyone and their sister can read the Kubernetes configuration, if they have access to my cluster, a.k.a my Raspberry Pi. But is this really an issue? I don't think so if you don't store sensitive information in it, which I harshly advise against anyway -- use Kubernetes Secrets for that.
+With every command, Helm warns me that my Kubernetes configuration files are either group- or even world-readable, which they consider insecure. In general, it is good practice to take warnings seriously and evaluate whether or not they apply to your current situation. So what do these warnings mean in my case? Basically, everyone and their sister can read the Kubernetes configuration, if they have access to my cluster, a.k.a my Raspberry Pi. But is this really an issue? I don't think so if you don't store sensitive information in it, which I harshly advise against anyway -- use Kubernetes Secrets for that.
+
 All in all, I stick to my decision from [my first post about this project](https://www.hasselmann.click/single-node-k3s#:~:text=all%2Dnamespaces.-,Kneading,-To%20install%20the) and consider the risk very low, that someone accesses my home network, connects to my Raspberry Pi physically or exploits a running service, to blow up my cluster.
 But if I ever want to expose some service to the public, I'll make sure to read the [CIS Hardening Guide | K3s](https://docs.k3s.io/security/hardening-guide) in depth.
 
 ### Testing
 
-Delivering proper packages requires them to be testable. In the sense of Helm this means, that after the installation of a release, the test configurations can be executed to check, whether the application was installed correctly. After reading their documentation [Helm | Chart Tests](https://helm.sh/docs/topics/chart_tests/) and being inspired by their default connection test, I came up with the following for my test app:
+Delivering proper packages requires them to be testable. In the sense of Helm this means, that after the installation of a release, the test configurations can be executed to check, whether the application was installed correctly. After reading their [Helm | Chart Tests] (https://helm.sh/docs/topics/chart_tests/) documentation and being inspired by their default connection test, I came up with the following for my test app:
 
 ```yml
 apiVersion: v1
