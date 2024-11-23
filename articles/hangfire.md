@@ -1,3 +1,8 @@
+---
+title: "Background Jobs in .NET with Hangfire"
+publishedAt: '2024.11.23'
+estdRead: 10
+---
 
 # Background Jobs in .NET with [Hangfire](http://Hangfire.io)
 
@@ -23,10 +28,6 @@ To get an overview what is currently going on in a specific storage, Hangfire pr
 
 The dashboard can also interact with jobs, e.g. (re-) trigger them. To do this, it needs access to the assemblies containing the jobs. For a read only variant it is otherwise not required though and the job identifier will always be displayed.
 
-<div style="margin-left: auto;
-            margin-right: auto;
-            width: 50%">
-
 | ![dashboard_recurring.png](./images/dashboard_recurring.png) | 
 |:--:| 
 | View: Recurring Jobs |
@@ -42,8 +43,6 @@ The dashboard can also interact with jobs, e.g. (re-) trigger them. To do this, 
 | ![dashboard_usage_history.png](./images/dashboard_usage_history.png) | 
 |:--:| 
 | View: Usage and History |
-
-</div>
 
 In the demo project, this can be tried by running the [Hangfire.Dashboard](https://github.com/hasselmann-click/hangfire-demo/tree/main/Hangfire.Dashboard) project while having the database connection string pointing to the same SQL server the [Hangfire.Runner](https://github.com/hasselmann-click/hangfire-demo/tree/main/Hangfire.Runner) project is using.
 
