@@ -16,8 +16,6 @@ In this post I will be discussing some patterns we found useful running Hangfire
 |:--:| 
 | Source: [Documentation — Hangfire Documentation](https://docs.hangfire.io/en/latest/) |
 
-
-
 Hangfire basically consists of three components: Client, server, and storage. Clients schedule jobs by writing serialized job method declarations to storage, divided into job queues. Servers regularly poll their respective queue(s) and execute scheduled jobs based on the number of workers they’re configured to use as well as available threads on the host.
 
 Recurring jobs can be enqueued separately by cron expressions.
