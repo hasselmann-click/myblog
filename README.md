@@ -1,6 +1,6 @@
 # My Blog
 
-The blog you see on [hasselmann.click](hasselmann.click).
+The blog you see on [hasselmann.click](https://www.hasselmann.click).
 
 Based on a template using Next.js 13 (app directory) and NextUI (v2).
 
