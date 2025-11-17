@@ -1,4 +1,4 @@
-import { NavbarContent, Navbar as NextUINavbar } from '@nextui-org/navbar';
+import { NavbarContent, Navbar as NextUINavbar } from '@heroui/navbar';
 
 import { ThemeSwitch } from '@/components/theme-switch';
 import { ReactNode } from 'react';

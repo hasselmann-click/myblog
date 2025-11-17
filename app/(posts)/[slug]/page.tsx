@@ -8,7 +8,7 @@ type Params = {
     slug: string;
 };
 type Props = {
-    params: Params;
+    params: Promise<Params>;
 };
 
 /**
@@ -20,9 +20,8 @@ export const generateStaticParams = async (): Promise<Params[]> => {
 };
 
 const Page = async (props: Props) => {
-    const {
-        params: { slug },
-    } = props;
+    const { params } = props;
+    const { slug } = await params;
     const post = await getPost(slug);
     if (!post) {
         notFound();

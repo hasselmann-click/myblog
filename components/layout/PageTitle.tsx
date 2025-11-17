@@ -1,4 +1,5 @@
-import { Link } from '@nextui-org/link';
+import { Link } from '@heroui/link';
+import { JSX } from 'react';
 
 export const PageTitle: () => JSX.Element = () => {
     return (
@@ -7,3 +8,4 @@ export const PageTitle: () => JSX.Element = () => {
         </Link>
     );
 };
+ 

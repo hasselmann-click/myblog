@@ -1,5 +1,5 @@
-import { Card, CardFooter, CardHeader } from '@nextui-org/card';
-import { Link } from '@nextui-org/link';
+import { Card, CardFooter, CardHeader } from '@heroui/card';
+import { Link } from '@heroui/link';
 
 export default function FourOhFour() {
     return (

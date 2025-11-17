@@ -1,5 +1,5 @@
 import { GithubIcon, RssIcon } from '@/components/icons';
-import { Link } from '@nextui-org/link';
+import { Link } from '@heroui/link';
 
 const PATH_RSS = '/rss';
 const PATH_GH = 'https://github.com/hasselmann-click/myblog';

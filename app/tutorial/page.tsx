@@ -1,8 +1,8 @@
 import NextLink from 'next/link';
-import { Link } from '@nextui-org/link';
-import { Snippet } from '@nextui-org/snippet';
-import { Code } from '@nextui-org/code';
-import { button as buttonStyles } from '@nextui-org/theme';
+import { Link } from '@heroui/link';
+import { Snippet } from '@heroui/snippet';
+import { Code } from '@heroui/code';
+import { button as buttonStyles } from '@heroui/theme';
 import { siteConfig } from '@/app/tutorial/config/site';
 import { title, subtitle } from '@/app/tutorial/components/primitives';
 import { GithubIcon } from '@/app/tutorial/components/icons';

@@ -4,7 +4,7 @@ import 'highlight.js/styles/github.css';
 import { fontSans } from '@/config/fonts';
 import { Providers } from '@/app/providers';
 import clsx from 'clsx';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
     // TODO optimize: metadata
@@ -13,15 +13,19 @@ export const metadata: Metadata = {
     //     template: `%s - ${siteConfig.name}`,
     // },
     // description: siteConfig.description,
-    themeColor: [
-        { media: '(prefers-color-scheme: light)', color: 'white' },
-        { media: '(prefers-color-scheme: dark)', color: 'black' },
-    ],
+
     icons: {
         icon: '/favicon.ico',
         shortcut: '/favicon-16x16.png',
         apple: '/apple-touch-icon.png',
     },
+};
+
+export const viewPort: Viewport = {
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: 'white' },
+        { media: '(prefers-color-scheme: dark)', color: 'black' },
+    ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

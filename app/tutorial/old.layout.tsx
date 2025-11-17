@@ -4,7 +4,7 @@ import { siteConfig } from '@/app/tutorial/config/site';
 import { fontSans } from '@/app/tutorial/config/fonts';
 import { Providers } from '@/app/providers';
 import { Navbar } from '@/app/tutorial/components/navbar';
-import { Link } from '@nextui-org/link';
+import { Link } from '@heroui/link';
 import clsx from 'clsx';
 
 export const metadata: Metadata = {

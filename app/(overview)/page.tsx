@@ -1,7 +1,7 @@
 import { getPosts } from '@/lib/posts';
 import { PostDto } from '@/types';
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
-import { Image } from '@nextui-org/image';
+import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card';
+import { Image } from '@heroui/image';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
 

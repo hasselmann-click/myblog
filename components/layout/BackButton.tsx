@@ -1,4 +1,4 @@
-import { Link } from '@nextui-org/link';
+import { Link } from '@heroui/link';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
 
 export const BackButton = () => {
