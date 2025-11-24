@@ -1,44 +1,51 @@
-import '@/styles/globals.css';
-import 'highlight.js/styles/github.css';
+import type React from "react"
+// <CHANGE> Updated metadata for blog
+import type { Metadata } from "next"
 
-import { fontSans } from '@/config/fonts';
-import { Providers } from '@/app/providers';
-import clsx from 'clsx';
-import { Metadata, Viewport } from 'next';
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
+
+import { Plus_Jakarta_Sans as V0_Font_Plus_Jakarta_Sans, IBM_Plex_Mono as V0_Font_IBM_Plex_Mono, Lora as V0_Font_Lora } from 'next/font/google'
+
+// Initialize fonts
+const _plusJakartaSans = V0_Font_Plus_Jakarta_Sans({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800"] })
+const _ibmPlexMono = V0_Font_IBM_Plex_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700"] })
+const _lora = V0_Font_Lora({ subsets: ['latin'], weight: ["400","500","600","700"] })
 
 export const metadata: Metadata = {
-    // TODO optimize: metadata
-    // title: {
-    //     default: 'My Blog',
-    //     template: `%s - ${siteConfig.name}`,
-    // },
-    // description: siteConfig.description,
-
-    icons: {
-        icon: '/favicon.ico',
-        shortcut: '/favicon-16x16.png',
-        apple: '/apple-touch-icon.png',
-    },
-};
-
-export const viewPort: Viewport = {
-    themeColor: [
-        { media: '(prefers-color-scheme: light)', color: 'white' },
-        { media: '(prefers-color-scheme: dark)', color: 'black' },
+  title: "hasselmann - Blog",
+  description: "A minimalist blog exploring web development, design, and modern tech.",
+  generator: "v0.app",
+  icons: {
+    icon: [
+      {
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
     ],
-};
+    apple: "/apple-icon.png",
+  },
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <head>
-                <link rel="alternate" type="application/rss+xml" href="/rss" title="RSS feed for hasselmann.click" />
-            </head>
-            <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-                <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-                    <div className="relative flex flex-col h-screen">{children}</div>
-                </Providers>
-            </body>
-        </html>
-    );
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`font-sans antialiased`}>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
 }

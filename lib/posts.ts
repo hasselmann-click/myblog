@@ -7,6 +7,9 @@ import { join } from 'path';
 const articleDir = process.env.ARTICLE_DIRECTORY || 'articles';
 const postsDirectory = join(process.cwd(), articleDir);
 
+
+// TODO get post preview for blog overview 
+
 export const getPosts: () => Promise<PostDto[]> = async () => {
     const fileNames = await fs.readdir(postsDirectory);
     const posts = fileNames.map(async (fileName) => {

@@ -1,17 +1,8 @@
-import { Card, CardFooter, CardHeader } from '@heroui/card';
-import { Link } from '@heroui/link';
+import { BlogPostCard } from '@/components/blog-post-card';
+import { formatDate } from '@/lib/utils';
 
 export default function FourOhFour() {
     return (
-        <Card>
-            <CardHeader className="justify-center">
-                <h1 className="lg:text-7xl text-4xl">404</h1>
-                <div className="border-l-2 h-8 mx-7 my-auto" /> {/* Making my own divider... */}
-                <h2>The page you’re looking for doesn’t exist.</h2>
-            </CardHeader>
-            <CardFooter className="justify-center">
-                <Link href="/">Go Home</Link>
-            </CardFooter>
-        </Card>
+        <BlogPostCard isNewest={true} link='/' post={{ title: "404 - Not Found", preview: "The page you’re looking for doesn’t exist.", id: "404", date: formatDate(new Date()) }} />
     );
 }

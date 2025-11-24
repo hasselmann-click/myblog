@@ -1,10 +1,10 @@
-import { Link } from '@heroui/link';
-import { HiOutlineArrowLeft } from 'react-icons/hi2';
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export const BackButton = () => {
     return (
         <Link className="font-bold text-5xl" href="/" title="hasselmann.ch">
-            <HiOutlineArrowLeft />
+            <ArrowLeft />
         </Link>
     );
 };
