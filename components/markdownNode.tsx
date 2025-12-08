@@ -7,9 +7,9 @@ export const MarkdownNode = (props: { markdown: string; hlStyle: { [key: string]
     const { markdown, hlStyle } = props;
     return (
         <>
-            <Head>
+            {/* <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-            </Head>
+            </Head> */}
             <article
                 className={`
             prose 

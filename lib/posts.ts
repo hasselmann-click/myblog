@@ -1,4 +1,3 @@
-import { PostDto } from '@/types';
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { join } from 'path';
@@ -7,6 +6,13 @@ import { join } from 'path';
 const articleDir = process.env.ARTICLE_DIRECTORY || 'articles';
 const postsDirectory = join(process.cwd(), articleDir);
 
+export type PostDto = {
+    title: string;
+    slug: string;
+    publishedAt: Date;
+    content: string;
+    imgSrc?: string;
+};
 
 // TODO get post preview for blog overview 
 

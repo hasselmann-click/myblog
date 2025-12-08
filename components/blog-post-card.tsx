@@ -23,7 +23,7 @@ export function BlogPostCard({ post, isNewest = false, link }: BlogPostCardProps
 
   return (
     <article
-      className={`group cursor-pointer transition-all duration-300 ${isNewest ? "bg-accent/30 border border-accent rounded-lg p-6 sm:p-8" : "p-0"
+      className={`group cursor-pointer transition-all duration-300 p-6 ${isNewest ? "bg-accent/30 border border-accent rounded-lg" : "p-0"
         }`}
     >
       <div className="space-y-4">
